@@ -3,6 +3,7 @@ import os
 import google.generativeai as genai
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
+import json
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -36,7 +37,12 @@ Currículo:
 """
     model = genai.GenerativeModel("gemini-2.0-flash")
     response = model.generate_content(prompt)
-    return response.text
+    
+    try:
+        return json.loads(response.text)  # já retorna como dicionário
+    except json.JSONDecodeError:
+        print("Erro: resposta do Gemini não é JSON válido")
+        return {}
 
 def generate_ai_profile(text):
     prompt = f"""
