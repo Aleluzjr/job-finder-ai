@@ -14,7 +14,7 @@ async def upload_resume(file: UploadFile = File(...)):
     with open("temp.pdf", "rb") as f:
         text = extract_text_from_pdf(f)
 
-    extracted_data = json.loads(analyze_resume(text))
+    extracted_data = analyze_resume(text)
     ai_profile = generate_ai_profile(text)
 
     db = SessionLocal()
