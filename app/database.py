@@ -13,13 +13,18 @@ Base = declarative_base()
 class Candidato(Base):
     __tablename__ = "candidatos"
 
-    id = Column(Integer, primary_key=True, index=True)
-    nome = Column(String)
-    cargo = Column(String)
-    habilidades = Column(Text)
-    experiencias = Column(Text)
-    certificacoes = Column(Text)
-    perfil_ia = Column(Text)
+    ID = Column(Integer, primary_key=True, index=True)
+    NOME = Column(String)
+    CIDADE = Column(String)
+    ESTADO = Column(String)
+    TELEFONE = Column(String)
+    LINKEDIN = Column(String)
+    CARGO = Column(String)
+    HABILIDADES = Column(Text)
+    EXPERIENCIAS = Column(Text)
+    CERTIFICACOES = Column(Text)
+    IDIOMAS = Column(Text)
+    PALAVRAS_CHAVES = Column(Text)
 
 def init_db():
     Base.metadata.create_all(bind=engine)
