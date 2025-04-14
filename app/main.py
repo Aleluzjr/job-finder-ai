@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 from app.resume_reader import extract_text_from_pdf, analyze_resume, generate_ai_profile
 from app.database import SessionLocal, Candidato
+import json
 
 # ✅ Defina o app aqui antes de usar qualquer @app
 app = FastAPI()
@@ -13,10 +14,9 @@ async def upload_resume(file: UploadFile = File(...)):
     with open("temp.pdf", "rb") as f:
         text = extract_text_from_pdf(f)
 
-    extracted_data = analyze_resume(text)
+    extracted_data = json.loads(analyze_resume(text))
     ai_profile = generate_ai_profile(text)
 
-    # Salvar no banco
     db = SessionLocal()
     candidato = Candidato(
         nome=extracted_data.get("nome"),
