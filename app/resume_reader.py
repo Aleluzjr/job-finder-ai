@@ -59,3 +59,18 @@ Currículo:
         print("❌ JSON não encontrado na resposta do Gemini.")
         print("Resposta completa:", raw_text)
         return {}
+    
+
+def generate_ai_profile(text):
+    prompt = f"""
+A partir do currículo abaixo, gere um PERFIL PROFISSIONAL resumido e objetivo. Inclua:
+- Palavras-chave principais (skills, tecnologias, áreas de conhecimento)
+- Áreas de interesse profissional (ex: desenvolvimento, gestão, design)
+- Sugestão de título de perfil (cargo ideal)
+
+Currículo:
+{text}
+"""
+    model = genai.GenerativeModel("gemini-2.0-flash")
+    response = model.generate_content(prompt)
+    return response.text
