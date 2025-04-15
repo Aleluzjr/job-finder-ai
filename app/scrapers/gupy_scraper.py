@@ -56,18 +56,3 @@ if __name__ == "__main__":
     vagas = scrape_gupy_jobs(cargo="Analista de Sistemas", localidade="Remoto")
     for vaga in vagas:
         print(vaga)  # Ou salve no banco de dados
-
-    def salvar_vaga(dados):
-        session = SessionLocal()
-        vaga = JOB_OFFERS(
-            SITE=dados["site"],
-            TITULO=dados["titulo"],
-            EMPRESA=dados["empresa"],
-            LOCALIDADE=dados["localidade"],
-            MODALIDADE=dados["modalidade"],
-            DESCRICAO=dados["descricao"],
-            URL=dados["url"]
-        )
-        session.add(vaga)
-        session.commit()
-        session.close()
