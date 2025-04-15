@@ -4,11 +4,17 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 import json
+import re
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-print(os.getenv("GOOGLE_API_KEY"))
 
+def extract_text_from_pdf(file):
+    reader = PdfReader(file)
+    text = ""
+    for page in reader.pages:
+        text += page.extract_text() or ""
+    return text
 
 def extract_json_from_text(text):
     match = re.search(r'\{.*\}', text, re.DOTALL)
@@ -36,7 +42,6 @@ Campos esperados:
 Currículo:
 {text}
 """
-
     model = genai.GenerativeModel("gemini-2.0-flash")
     response = model.generate_content(prompt)
 
