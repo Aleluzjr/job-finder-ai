@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, TIMESTAMP, func
 from app.database import Base
 
 class Candidato(Base):
@@ -16,3 +16,16 @@ class Candidato(Base):
     CERTIFICACOES = Column(Text)
     IDIOMAS = Column(Text)
     PALAVRAS_CHAVES = Column(Text)
+
+class JOB_OFFERS(Base):
+    __tablename__ = "JOB_OFFERS"
+
+    ID = Column(Integer, primary_key=True, autoincrement=True)
+    SITE = Column(String(50))
+    TITULO = Column(String(255))
+    EMPRESA = Column(String(255))
+    LOCALIDADE = Column(String(100))
+    MODALIDADE = Column(String(50))
+    DESCRICAO = Column(Text)
+    URL = Column(Text)
+    DATA_COLETA = Column(TIMESTAMP, default=func.now())
