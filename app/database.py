@@ -11,7 +11,7 @@ SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
 class Candidato(Base):
-    __tablename__ = "candidatos"
+    __tablename__ = "CANDIDATOS"
 
     ID = Column(Integer, primary_key=True, index=True)
     NOME = Column(String)
