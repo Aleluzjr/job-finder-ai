@@ -3,6 +3,7 @@ from app.database import Base
 
 class Candidato(Base):
     __tablename__ = "CANDIDATOS"
+    __table_args__ = {"extend_existing": True}
 
     ID = Column(Integer, primary_key=True, index=True)
     NOME = Column(String)
@@ -19,6 +20,7 @@ class Candidato(Base):
 
 class JOB_OFFERS(Base):
     __tablename__ = "JOB_OFFERS"
+    __table_args__ = {"extend_existing": True}
 
     ID = Column(Integer, primary_key=True, autoincrement=True)
     SITE = Column(String(50))
