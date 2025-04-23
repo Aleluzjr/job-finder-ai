@@ -1,7 +1,7 @@
 import asyncio
 from app.database import SessionLocal
 from models import JOB_OFFERS
-from app.scrapers.gupy_scraper import scrape_gupy_vagas
+from app.scrapers.linkedin_scraper import scrape_gupy_vagas
 from datetime import datetime
 
 def salvar_vagas(vagas: list):
